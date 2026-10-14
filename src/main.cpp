@@ -104,7 +104,7 @@ void textoTipoC()
 
   //* Convertendo texto numerico para inteiro 
   char idadeTexto[] = "39"; //* [0x33, 0x57, 0x00]
-  int idadeTexto = atoi(idadeTexto);
+  int idadeTextoNumero = atoi(idadeTexto);
   
   //* Montando Texto
   char buffer[100];
@@ -155,4 +155,71 @@ void textoTipoC()
 
 void textoTipoString()
 {
+  String nome = "Carlos";
+  String curso = "Logica de Programacao";
+  String mensagem = "Ola";
+
+  mensagem = mensagem + ", " + nome + "! Bem vindo ao curso de " + curso;
+
+  Serial.println(mensagem);
+
+
+  //* Tamanho da String
+  int tamanhoMensagem = mensagem.length();
+
+  Serial.printf("Tamanho da String em Texto: %u", tamanhoMensagem);
+
+
+  //* Acessando um caractere em uma posicao especifica 
+  char primeiraLetra = mensagem.charAt(0);
+  Serial.printf("Primeira Letra: %c\n\r", primeiraLetra);
+
+  //*Tambem e possivel acessar com colchetes
+  char ultimaLetra = mensagem[tamanhoMensagem - 1];
+
+  Serial.printf("Ultima Letra: %c\n\r", ultimaLetra);
+
+  //* Procurar um texto dentro de uma String
+  int posicaoTextoProcurado = mensagem.indexOf("curso");
+  Serial.printf("A palavra procurada esta na posicao: %d\n\r", posicaoTextoProcurado);
+
+  //* Extraindo o nome do curso 
+  int inicioNomeCurso = posicaoTextoProcurado + 9;  //* posicao da palavra curso + 9 posicoes a frente
+
+  String NomeCursoTexto = mensagem.substring(inicioNomeCurso, ultimaLetra - 2);
+  Serial.printf("Nome do Curso: %s\n\r", NomeCursoTexto.c_str());
+
+  //* Substituindo um trecho dentro de uma String
+  mensagem.replace("OLa", "Boa tarde! ");
+  Serial.println(mensagem);
+
+  //* Convertendo tudo em maiusculos
+  mensagem.toUpperCase();
+  Serial.println(mensagem);
+
+
+  char letraMinuscula = mensagem[0] + " ";
+  Serial.println(letraMinuscula);
+
+  //* Convertendo tudo para minusculo
+  mensagem.toLowerCase();
+  Serial.println(mensagem);
+
+  //* Verificando se uma String esta vazia
+  String textoVazio = "";
+  if(textoVazio.length() == 0) Serial.println("O texto esta vazio");
+
+  //* Convertendo texto numerico para inteiro
+  String textoNumero = "725";
+  int numero = textoNumero.toInt();
+  Serial.println(numero / 5);
+
+  //* Convertendo String para const char* (texto tipo c)
+  //*Isso e util quando alguma biblioteca espera texto estilo c 
+  const char* textoComoChar =  mensagem.c_str();
+  Serial.println(textoComoChar);
+
+
+
+
 }
